@@ -1,0 +1,140 @@
+---
+title: "RWorksheet_Animas#1"
+output: pdf_document
+date: "2024-09-17"
+---
+
+#1 Set up the vector named age
+age <- c(34, 28, 22, 36, 27, 18, 52, 39, 42, 29,
+35, 31, 27, 22, 37, 34, 19, 20, 57, 49, 50, 37, 46, 25, 17, 37, 42, 53, 41,
+51, 35, 24, 33, 41.)
+
+
+#a. How many data points?
+datapointsA <-length(age)
+datapointsA
+
+#2. Find the reciprocal of the values for age.
+reciprocal_age <- 1/age
+reciprocal_age
+
+#3. Assign also new_age <- c(age, 0, age).
+new_age <- c(age, 0, age)
+new_age
+
+#What happen to the new_age?
+#The value (age, 0, age) has been assigned to vector new age
+
+#4. Sort the values for age.
+sorted_age <- sort(age)
+sorted_age
+
+#5. Find the minimum and maximum value for age.
+min_age <- min(age)
+min_age
+
+max_age <- max(age)
+max_age
+
+#6. Set up a vector named data
+data <- c(2.4, 2.8, 2.1, 2.5, 2.4, 2.2, 2.5, 2.3, 2.5, 2.3, 2.4, 2.7)
+
+#a. How many data points?
+datapointsD<- length(data)
+datapointsD
+
+#7. Generates a new vector for data where you double every value of the data. | What happen to the data?
+doubled_data <- data*2
+doubled_data
+#the value of each data becomes doubled.
+
+#8. Generate a sequence for the following scenario:
+
+#8.1 Integers from 1 to 100.
+Integers_1to100<-seq(from=1, to=100, by=1)
+Integers_1to100
+
+#8.2 Numbers from 20 to 60
+Numbers<-seq(from=20, to=60, by = 1)
+Numbers
+
+#8.3 Mean of numbers from 20 to 60
+Mean_Of_20to60<- mean(seq(from=20, to=60, by = 1))
+Mean_Of_20to60
+
+#8.4 Sum of numbers from 51 to 91
+Sum_Of_Numbers<- sum(seq(from=51, to=91, by = 1))
+Sum_Of_Numbers
+
+#8.5 Integers from 1 to 1,000
+Integers<-seq(from=1, to=1000, by = 1)
+Integers
+
+#a. How many data points from 8.1 to 8.4?
+total_data_points<-length(Integers_1to100)+length(Numbers)+length(Mean_Of_20to60)+length(Sum_Of_Numbers)
+total_data_points
+
+#b. Write the R code and its output from 8.1 to 8.4.
+
+#c. For 8.5 find only maximum data points until 10.
+seq(from=1, to=1000, by = 1)
+max_data_points <- max(seq(from=1, to=10, by =  1))
+max_data_points
+
+#9. *Print a vector with the integers between 1 and 100 that are not divisible by 3, 5 and 7 using filter option.
+numbers <- seq(1:100)
+non_divisible_numbers <-Filter(function(i){all(i%%c(3,5,7)!=0)}, seq(100))
+non_divisible_numbers
+
+#10. Generate a sequence backwards of the integers from 1 to 100.
+reversed_sequence<-(seq(from=100,to= 1, by = -1))
+reversed_sequence
+
+#11. List all the natural numbers below 25 that are multiples of 3 or 5.
+upper_limit<-25
+below_25<-seq(from=1,to= 24, by = 1)
+gcm_3or5<-Filter(function(i){any (i %% c(3,5)==0)},seq(from=1,to= 24, by = 1))
+gcm_3or5
+
+#Find the sum of these multiples.
+sum_of_gcm<-sum(gcm_3or5)
+sum_of_gcm    
+
+#a. How many data points from 10 to 11?
+data_pointsTE<-length(reversed_sequence)+length(gcm_3or5)+length(sum_of_gcm)    
+data_pointsTE
+
+#12. Statements can be grouped together using braces ‘{’ and ‘}’. A group of statements is sometimes called a block. Single statements are evaluated when a new line is typed at the end of the syntactically complete statement. Blocks are not evaluated until a new line is entered after the closing brace.
+
+#Enter this statement:
+x <- {0 + x + 5 + }
+
+#Describe the output.
+#Error occured because the expression is not complete or incomplete.
+
+#13. *Set up a vector named score, consisting of 72, 86, 92, 63, 88, 89, 91, 92, 75,75 and 77. To access individual elements of an atomic vector, one generally uses the x[i] construction.
+
+score <- c(72, 86, 92, 63, 88, 89, 91, 92, 75, 75, 77)
+
+#Find x[2] and x[3]. Write the R code and its output.
+x2 <- score[2]
+x3 <- score[3]
+x2
+x3
+
+#14. *Create a vector 
+a = c(1,2,NA,4,NA,6,7)
+#a. Change the NA to 999 using the codes 
+
+#b. Write the R code and its output. Describe the output.
+print(a,na.print="999")
+#The NA is replaced by a value of 999.
+
+  #15 A special type of function calls can appear on the left hand side of the assignmentoperator as in > class(x) <- "foo".
+  #Follow the codes below:
+ 
+  name = readline(prompt="Input your name: ")
+  age = readline(prompt="Input your age: ")
+  print(paste("My name is",name, "and I am",age ,"years old."))
+  print(R.version.string)
+#The output displays "My name is age" it is messy because you are promting the user of his/her name but it displays "My name is age".In the last part it displays the version of Rstudio installed by the user.
