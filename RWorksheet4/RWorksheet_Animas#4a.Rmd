@@ -1,0 +1,77 @@
+---
+title: "RWorksheet_Animas#4a"
+author: "Marvin Anthony Y. Animas"
+date: "2024-10-14"
+output: pdf_document
+---
+
+```{r}
+ShoeSize <- c(6.5,9.0,8.5,8.5,10.5,7.0,9.5,9.0,13.0,7.5,10.5,8.5,12.0,10.5,13.0,11.5,8.5,5.0,10.0,6.5,7.5,8.5,10.5,8.5,10.5,11.0,9.0,13.0)
+Height <- c(66.0,68.0,64.5,65.0,70.0,64.0,70.0,71.0,72.0,64.0,74.5,67.0,71.0,71.0,77.0,72.0,59.0,62.0,72.0,66.0,64.0,67.0,73.0,69.0,72.0,70.0,69.0,70.0)
+Gender <- c("F","F","F","F","M","F","F","F","M","F","M","F","M","M","M","M","F","F","M","F","F","M","M","F","M","M","M","M")
+Household<-data.frame(ShoeSize,Height,Gender)
+names(Household) <-c("Shoe size","Height","Gender")
+Household
+```
+```{r}
+#a.
+```
+#The table contains data on shoe sizes, heights, and genders for a group of individuals
+```{r}
+#b.
+Males <- subset(Household, Gender == "M", select = c("Shoe size", "Height","Gender"))
+Males
+```
+```{r}
+Females <- subset(Household, Gender == "F", select = c("Shoe size", "Height","Gender"))
+Females
+```
+```{r}
+#c
+MeanShoe <-mean(ShoeSize)
+MeanShoe
+```
+```{r}
+MeanHeight <-mean(Height)
+MeanHeight
+```
+```{r}
+#d
+```
+#Yes, there is likely a relationship between shoe size and height.Taller individuals tend to have larger feet, which means they usually wear larger shoe sizes. 
+```{r}
+#2
+
+months_vector<- c("March","April","January","November","January","September","October","September","November","August","January","November","November","February","May","August","July","December","August","August","September","November","February","April")
+factor_months_vector<-factor(months_vector)
+factor_months_vector
+
+
+#3
+SumMonths<-summary(months_vector)
+SumMonths
+
+SumFactor<-summary(factor_months_vector)
+SumFactor
+```
+```{r}
+#4
+direction<- c("East","West","North")
+frequency<- c(1,4,3)
+
+new_order_data <- factor(direction, levels = c("East","West","North"))
+new_order_data
+
+DirectFreq <- data.frame(Direction = direction, Frequency = frequency)
+DirectFreq
+```
+
+```{r}
+#5
+#a
+data <- read.table("import_march.csv", header = TRUE, sep = ",", stringsAsFactors = FALSE)
+
+#b
+data <- read.table("import_march.csv", header = TRUE, sep = ",", stringsAsFactors = FALSE)
+data
+```
