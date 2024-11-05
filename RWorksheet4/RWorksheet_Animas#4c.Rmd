@@ -1,0 +1,164 @@
+---
+title: "RWorksheet_Animas#4c"
+author: "Marvin Anthony Y. Animas"
+date: "2024-11-05"
+output: pdf_document
+---
+```{r}
+#1 Use the dataset mpg
+
+#a. Show your solutions on how to import a csv file into the environment
+mpg <- read.csv("C:/RStudio/RWorksheet4/mpg.csv", header = TRUE, sep = ",")
+mpg
+```
+```{r}
+#b. Which variables from mpg dataset are categorical?
+#The variables that are categorical includes Manufacturer, Model, Trans, Class, Fl and Drv.
+```
+
+
+```{r}
+#c. Which are continuous variables?
+#The continuous variables includes displ, year, cyl, and hwy.
+```
+
+```{r}
+#2. Which manufacturer has the most models in this data set? Which model has the most variations? Show your answer.
+#The manufacturer that has the most model is "toyota" and the model that has the most variation is the "caravan 2wd" model with 11 different variations.
+```
+
+```{r}
+#a Group the manufacturers and find the unique models. Show your codes and result.
+library(ggplot2)
+library(dplyr)
+
+unique_models <- mpg %>%
+group_by(manufacturer) %>%
+summarise(unique_models = n_distinct(model))
+unique_models
+```
+```{r}
+#b. Graph the result by using plot() and ggplot(). Write the codes and its result.
+
+manufacturers <- unique_models$manufacturer
+unique_counts <- unique_models$unique_models
+
+barplot(unique_counts, 
+        names.arg = manufacturers, 
+        main = "Number of Unique Models per Manufacturer",
+        xlab = "Manufacturer", 
+        ylab = "Unique Models",
+        las = 2,
+      col = "cyan")
+
+
+ggplot(unique_models, aes(x = reorder(manufacturer, -unique_models), y = unique_models)) +
+  geom_bar(stat = "identity", fill = "red") +
+  labs(title = "Number of Unique Models per Manufacturer", x = "Manufacturer", y = "Unique Models") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+```{r}
+#2. Same dataset will be used. You are going to show the relationship of the modeland the manufacturer.
+
+#a. What does ggplot(mpg, aes(model, manufacturer)) + geom_point() show?
+
+#The code ggplot(mpg, aes(model, manufacturer)) + geom_point() creates a scatter plot showing each car model (x-axis) with its corresponding manufacturer (y-axis), highlighting the distribution of models across manufacturers.
+
+#b. For you, is it useful? If not, how could you modify the data to make it more informative?
+
+#No, it’s not very useful. Grouping by manufacturer and model, then plotting model counts with point sizes, would make it more informative.
+
+```
+
+```{r}
+#3. Plot the model and the year using ggplot(). Use only the top 20 observations. Write the codes and its results.
+library(ggplot2)
+library(dplyr)
+Top_20 <- mpg[1:20,]
+ggplot(Top_20, aes(x = model, y = year)) +
+  geom_point(color = "green") +
+  labs(title = "Model vs Year for Top 20 Observations", x = "Model", y = "Year") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+
+```
+
+```{r}
+#4. Using the pipe (%>%), group the model and get the number of cars per model. Show codes and its result
+model_count <- mpg %>%
+  group_by(model) %>%
+  summarise(car_count = n())
+
+model_count
+
+
+#a. Plot using geom_bar() using the top 20 observations only. The graphs shoudl have a title, labels and colors. Show code and results.
+
+Top_20_DATA <- model_count %>% top_n(20, car_count)
+
+ggplot(Top_20_DATA, aes(x = reorder(model, car_count), y = car_count, fill = model)) +
+  geom_bar(stat = "identity") +
+  labs(title = "Top 20 Car Models by Count (Flipped)",
+       x = "Car Model",
+       y = "Count") 
+```
+```{r}
+#b. Plot using the geom_bar() + coord_flip() just like what is shown below. Show codes and its result.
+ggplot(Top_20_DATA, aes(x = reorder(model, car_count), y = car_count, fill = model)) +
+  geom_bar(stat = "identity") +
+  labs(title = "Top 20 Car Models by Count (Flipped)",
+       x = "Car Model",
+       y = "Count") +coord_flip()
+```
+```{r}
+#5. Plot the relationship between cyl - number of cylinders and displ - engine displacement using geom_point with aesthetic color = engine displacement. Title should be “Relationship between No. of Cylinders and Engine Displacement”.
+
+
+#a. How would you describe its relationship? Show the codes and its result.
+#The scatter plot reveals a positive correlation between the number of cylinders and engine displacement, indicating that vehicles with more cylinders typically have larger engines.
+ggplot(mpg, aes(x = cyl, y = displ, color = displ)) +
+geom_point() +
+labs(title = "Relationship between No. of Cylinders and Engine Displacement",
+       x = "Number of Cylinders",
+       y = "Engine Displacement")
+```
+```{r}
+#6. Plot the relationship between displ (engine displacement) and hwy(highway miles per gallon). Mapped it with a continuous variable you have identified in #1-c. What is its result? Why it produced such output?
+ggplot(mpg, aes(x = displ, y = hwy, color = displ)) +
+  geom_point(size = 3, alpha = 0.6) +  # Adjust point size and transparency
+  labs(title = "Relationship between Engine Displacement and Highway MPG",
+       x = "Engine Displacement (L)",
+       y = "Highway Miles Per Gallon (MPG)")
+
+```
+```{r}
+#6. Import the traffic.csv onto your R environment.
+traffic_data <- read.csv("C:/RStudio/RWorksheet4/traffic.csv", header = TRUE, sep = ",")
+traffic_data
+```
+
+```{r}
+#a. How many numbers of observation does it have? What are the variables of the traffic dataset the Show your answer.
+
+str(traffic_data)
+#The data contains 4 variables those are DateTime,Junction,Vehicles and ID.
+```
+
+
+```{r}
+#b.
+subset_junction <- subset(traffic_data, Junction == 1)
+subset_junction
+
+```
+
+
+
+
+
+
+
+
+
+
+
